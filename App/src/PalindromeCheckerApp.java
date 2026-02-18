@@ -1,5 +1,6 @@
 import java.util.Scanner;
 public class PalindromeCheckerApp {
+ uc2
     public static void main(String[] args) {
 
         // Create Scanner object
@@ -25,4 +26,10 @@ public class PalindromeCheckerApp {
         // Close scanner
         scanner.close();
     }
+
+    public static void main(String args[]) {
+        System.out.println("Welcome Palindrome Checker App");
+    }
+
+ main
 }
