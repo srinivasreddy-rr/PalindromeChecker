@@ -2,23 +2,6 @@ import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
-    // Recursive method
-    public static boolean isPalindrome(String str, int start, int end) {
-
-        // Base Condition
-        if (start >= end) {
-            return true;
-        }
-
-        // If characters do not match
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call
-        return isPalindrome(str, start + 1, end - 1);
-    }
-
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -26,10 +9,25 @@ public class PalindromeCheckerApp {
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        boolean result = isPalindrome(input, 0, input.length() - 1);
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        if (result) {
-            System.out.println("The string is a Palindrome.");
+        // Step 2: Apply Two-Pointer Logic
+        int left = 0;
+        int right = normalized.length() - 1;
+        boolean isPalindrome = true;
+
+        while (left < right) {
+            if (normalized.charAt(left) != normalized.charAt(right)) {
+                isPalindrome = false;
+                break;
+            }
+            left++;
+            right--;
+        }
+
+        // Print result
+        if (isPalindrome) {
+            System.out.println("The string is a Palindrome (Ignoring case & spaces).");
         } else {
             System.out.println("The string is NOT a Palindrome.");
         }
