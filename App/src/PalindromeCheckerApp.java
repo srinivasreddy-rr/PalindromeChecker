@@ -9,29 +9,40 @@ public class PalindromeCheckerApp {
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        // Create service object
+        PalindromeChecker checker = new PalindromeChecker();
 
-        // Step 2: Apply Two-Pointer Logic
-        int left = 0;
-        int right = normalized.length() - 1;
-        boolean isPalindrome = true;
+        boolean result = checker.checkPalindrome(input);
 
-        while (left < right) {
-            if (normalized.charAt(left) != normalized.charAt(right)) {
-                isPalindrome = false;
-                break;
-            }
-            left++;
-            right--;
-        }
-
-        // Print result
-        if (isPalindrome) {
-            System.out.println("The string is a Palindrome (Ignoring case & spaces).");
+        if (result) {
+            System.out.println("The string is a Palindrome.");
         } else {
             System.out.println("The string is NOT a Palindrome.");
         }
 
         sc.close();
+    }
+}
+
+// Service class (Encapsulated Logic)
+class PalindromeChecker {
+
+    // Public method exposed to outside world
+    public boolean checkPalindrome(String input) {
+
+        if (input == null) return false;
+
+        int left = 0;
+        int right = input.length() - 1;
+
+        while (left < right) {
+            if (input.charAt(left) != input.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
     }
 }
